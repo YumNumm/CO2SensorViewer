@@ -1,0 +1,10 @@
+✨ feature: feature/*
+🐛 bug: ["fix/*", "bugfix/*"]
+🚀 improve: ["improvement/*", "improve/*", "migrate/*"]
+
+👷‍♀️ CI:
+  - ".github/*.yml"
+  - ".github/workflows/**/*"
+
+📝 docs:
+  - "**/*.md"
