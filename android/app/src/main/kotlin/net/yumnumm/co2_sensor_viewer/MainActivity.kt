@@ -1,0 +1,6 @@
+package net.yumnumm.co2_sensor_viewer
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
