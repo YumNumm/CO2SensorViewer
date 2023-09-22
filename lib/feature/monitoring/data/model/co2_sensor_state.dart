@@ -6,7 +6,7 @@ part 'co2_sensor_state.freezed.dart';
 @freezed
 class CO2SensorModel with _$CO2SensorModel {
   const factory CO2SensorModel({
-    required bool isConnected,
+    required int limit,
     required List<
             (
               DateTime time,

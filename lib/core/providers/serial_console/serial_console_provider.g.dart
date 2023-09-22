@@ -8,7 +8,7 @@ part of 'serial_console_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$serialConsoleHash() => r'38229a56ac8a0e4126f0e06c96fe15b8e993b763';
+String _$serialConsoleHash() => r'c04f95d54da8d82797051fb650627b0c1da27d1b';
 
 /// Copied from Dart SDK
 class _SystemHash {

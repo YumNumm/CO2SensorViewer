@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CO2SensorModel {
-  bool get isConnected => throw _privateConstructorUsedError;
+  int get limit => throw _privateConstructorUsedError;
   List<(DateTime, SensorValue)> get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +30,7 @@ abstract class $CO2SensorModelCopyWith<$Res> {
           CO2SensorModel value, $Res Function(CO2SensorModel) then) =
       _$CO2SensorModelCopyWithImpl<$Res, CO2SensorModel>;
   @useResult
-  $Res call({bool isConnected, List<(DateTime, SensorValue)> data});
+  $Res call({int limit, List<(DateTime, SensorValue)> data});
 }
 
 /// @nodoc
@@ -46,14 +46,14 @@ class _$CO2SensorModelCopyWithImpl<$Res, $Val extends CO2SensorModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isConnected = null,
+    Object? limit = null,
     Object? data = null,
   }) {
     return _then(_value.copyWith(
-      isConnected: null == isConnected
-          ? _value.isConnected
-          : isConnected // ignore: cast_nullable_to_non_nullable
-              as bool,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
@@ -70,7 +70,7 @@ abstract class _$$_CO2SensorModelCopyWith<$Res>
       __$$_CO2SensorModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isConnected, List<(DateTime, SensorValue)> data});
+  $Res call({int limit, List<(DateTime, SensorValue)> data});
 }
 
 /// @nodoc
@@ -84,14 +84,14 @@ class __$$_CO2SensorModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isConnected = null,
+    Object? limit = null,
     Object? data = null,
   }) {
     return _then(_$_CO2SensorModel(
-      isConnected: null == isConnected
-          ? _value.isConnected
-          : isConnected // ignore: cast_nullable_to_non_nullable
-              as bool,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -104,12 +104,11 @@ class __$$_CO2SensorModelCopyWithImpl<$Res>
 
 class _$_CO2SensorModel implements _CO2SensorModel {
   const _$_CO2SensorModel(
-      {required this.isConnected,
-      required final List<(DateTime, SensorValue)> data})
+      {required this.limit, required final List<(DateTime, SensorValue)> data})
       : _data = data;
 
   @override
-  final bool isConnected;
+  final int limit;
   final List<(DateTime, SensorValue)> _data;
   @override
   List<(DateTime, SensorValue)> get data {
@@ -120,7 +119,7 @@ class _$_CO2SensorModel implements _CO2SensorModel {
 
   @override
   String toString() {
-    return 'CO2SensorModel(isConnected: $isConnected, data: $data)';
+    return 'CO2SensorModel(limit: $limit, data: $data)';
   }
 
   @override
@@ -128,14 +127,13 @@ class _$_CO2SensorModel implements _CO2SensorModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CO2SensorModel &&
-            (identical(other.isConnected, isConnected) ||
-                other.isConnected == isConnected) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, isConnected, const DeepCollectionEquality().hash(_data));
+      runtimeType, limit, const DeepCollectionEquality().hash(_data));
 
   @JsonKey(ignore: true)
   @override
@@ -146,11 +144,11 @@ class _$_CO2SensorModel implements _CO2SensorModel {
 
 abstract class _CO2SensorModel implements CO2SensorModel {
   const factory _CO2SensorModel(
-      {required final bool isConnected,
+      {required final int limit,
       required final List<(DateTime, SensorValue)> data}) = _$_CO2SensorModel;
 
   @override
-  bool get isConnected;
+  int get limit;
   @override
   List<(DateTime, SensorValue)> get data;
   @override

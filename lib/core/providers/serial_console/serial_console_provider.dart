@@ -17,12 +17,20 @@ class SerialConsole extends _$SerialConsole {
 
   @override
   Stream<String> build(UsbDevice device) {
+    ref.onDispose(() {
+      _controller.close();
+      port.close();
+    });
     return _controller.stream.asBroadcastStream();
   }
 
   Future<void> connect() async {
     final port = await device.create();
     if (!(await port!.open())) {
+      _controller.addError(
+        SerialConsoleException(SerialConsoleExceptionType.failedToOpenPort),
+      );
+      unawaited(port.close());
       throw SerialConsoleException(SerialConsoleExceptionType.failedToOpenPort);
     }
     this.port = port;
@@ -46,9 +54,13 @@ class SerialConsole extends _$SerialConsole {
     ref.listen(
       usbEventProvider,
       (_, next) {
-        if (next.value?.event == 'ACTION_USB_DETACHED') {
-          _controller.close();
-          throw SerialConsoleException(SerialConsoleExceptionType.disconnected);
+        log('USB_EVENT: ${next.value?.event}');
+        if (next.value?.event?.contains('ACTION_USB_DETACHED') ?? false) {
+          _controller
+            ..addError(
+              SerialConsoleException(SerialConsoleExceptionType.disconnected),
+            )
+            ..close();
         }
       },
     );

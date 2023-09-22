@@ -14,19 +14,13 @@ class CO2Sensor extends _$CO2Sensor {
       serialConsoleProvider(device),
       (_, next) {
         final result = _parse(next.valueOrNull ?? '');
-        print(result);
         if (result != null) {
-          state = state.copyWith(
-            data: [
-              ...state.data,
-              (DateTime.now(), result),
-            ],
-          );
+          _addValue(result);
         }
       },
     );
     return const CO2SensorModel(
-      isConnected: false,
+      limit: 60 * 5,
       data: [],
     );
   }
@@ -34,19 +28,11 @@ class CO2Sensor extends _$CO2Sensor {
   Future<void> start() async {
     // connect
     await ref.read(serialConsoleProvider(device).notifier).connect();
-    print('connected');
-    await Future<void>.delayed(const Duration(seconds: 1));
-    // 開始処理
-    await ref.read(serialConsoleProvider(device).notifier).send('STA');
-    // 開始したかどうかの確認
-    await Future<void>.delayed(const Duration(seconds: 1));
-    // 5回までリトライ
+    // 10回までリトライ
     for (var i = 0; i < 10; i++) {
       final result = state.data.lastOrNull?.$2;
-      print(result);
       if (result != null) {
         state = state.copyWith(
-          isConnected: true,
           data: [
             ...state.data,
             (DateTime.now(), result),
@@ -64,11 +50,27 @@ class CO2Sensor extends _$CO2Sensor {
   SensorValue? _parse(String value) {
     try {
       return SensorValue.fromCsv(value);
+      // ignore: avoid_catching_errors
     } on Error {
       return null;
     } on Exception {
       return null;
     }
+  }
+
+  void _addValue(SensorValue value) {
+    // limitを超えたら先頭を削除
+    if (state.data.length >= state.limit) {
+      state = state.copyWith(
+        data: state.data.sublist(1),
+      );
+    }
+    state = state.copyWith(
+      data: [
+        ...state.data,
+        (DateTime.now(), value),
+      ],
+    );
   }
 }
 
