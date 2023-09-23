@@ -10,8 +10,8 @@
 #include <flutter_libserialport/flutter_libserialport_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  DynamicColorPluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("DynamicColorPluginCApi"));
-  FlutterLibserialportPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("FlutterLibserialportPlugin"));
+    DynamicColorPluginCApiRegisterWithRegistrar(
+        registry->GetRegistrarForPlugin("DynamicColorPluginCApi"));
+    FlutterLibserialportPluginRegisterWithRegistrar(
+        registry->GetRegistrarForPlugin("FlutterLibserialportPlugin"));
 }
