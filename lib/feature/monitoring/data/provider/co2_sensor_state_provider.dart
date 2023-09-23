@@ -1,24 +1,16 @@
-import 'package:co2_sensor_viewer/core/providers/serial_console/serial_console_provider.dart';
+import 'dart:async';
+
+import 'package:co2_sensor_viewer/core/providers/serial_console/base/serial_console_base.dart';
 import 'package:co2_sensor_viewer/feature/monitoring/data/model/co2_sensor_state.dart';
 import 'package:co2_sensor_viewer/feature/monitoring/data/model/sensor_value.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:usb_serial/usb_serial.dart';
 
 part 'co2_sensor_state_provider.g.dart';
 
 @riverpod
 class CO2Sensor extends _$CO2Sensor {
   @override
-  CO2SensorModel build(UsbDevice device) {
-    ref.listen(
-      serialConsoleProvider(device),
-      (_, next) {
-        final result = _parse(next.valueOrNull ?? '');
-        if (result != null) {
-          _addValue(result);
-        }
-      },
-    );
+  CO2SensorModel build(SerialConsoleDeviceBase device) {
     return const CO2SensorModel(
       limit: 60 * 5,
       data: [],
@@ -26,25 +18,26 @@ class CO2Sensor extends _$CO2Sensor {
   }
 
   Future<void> start() async {
-    // connect
-    await ref.read(serialConsoleProvider(device).notifier).connect();
-    // 10回までリトライ
-    for (var i = 0; i < 10; i++) {
-      final result = state.data.lastOrNull?.$2;
-      if (result != null) {
-        state = state.copyWith(
-          data: [
-            ...state.data,
-            (DateTime.now(), result),
-          ],
-        );
-        return;
+    // start
+    final stream = await device.createStream();
+    final startCompleter = Completer<void>();
+    stream.listen((event) {
+      print(event);
+      if (event == 'OK STA') {
+        startCompleter.complete();
       }
-      await ref.read(serialConsoleProvider(device).notifier).send('STA');
-      await Future<void>.delayed(const Duration(seconds: 1));
+      final value = _parse(event);
+      if (value != null) {
+        _addValue(value);
+      }
+    });
+    await device.write('STA\r\n');
+    // wait 10 seconds for start
+    await startCompleter.future.timeout(const Duration(seconds: 10));
+    if (startCompleter.isCompleted) {
+      return;
     }
     throw CO2SensorException(CO2SensorExceptionType.failedToStart);
-    // 成功
   }
 
   SensorValue? _parse(String value) {

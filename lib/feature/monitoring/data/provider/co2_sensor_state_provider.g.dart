@@ -8,7 +8,7 @@ part of 'co2_sensor_state_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cO2SensorHash() => r'19089c6e1afa8c1c7e8eb83e1e4288ab9c4f35b5';
+String _$cO2SensorHash() => r'a2f829fb73fe9ad3a7e522697a830bc88e6d248e';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -33,10 +33,10 @@ class _SystemHash {
 
 abstract class _$CO2Sensor
     extends BuildlessAutoDisposeNotifier<CO2SensorModel> {
-  late final UsbDevice device;
+  late final SerialConsoleDeviceBase device;
 
   CO2SensorModel build(
-    UsbDevice device,
+    SerialConsoleDeviceBase device,
   );
 }
 
@@ -51,7 +51,7 @@ class CO2SensorFamily extends Family<CO2SensorModel> {
 
   /// See also [CO2Sensor].
   CO2SensorProvider call(
-    UsbDevice device,
+    SerialConsoleDeviceBase device,
   ) {
     return CO2SensorProvider(
       device,
@@ -87,7 +87,7 @@ class CO2SensorProvider
     extends AutoDisposeNotifierProviderImpl<CO2Sensor, CO2SensorModel> {
   /// See also [CO2Sensor].
   CO2SensorProvider(
-    UsbDevice device,
+    SerialConsoleDeviceBase device,
   ) : this._internal(
           () => CO2Sensor()..device = device,
           from: cO2SensorProvider,
@@ -111,7 +111,7 @@ class CO2SensorProvider
     required this.device,
   }) : super.internal();
 
-  final UsbDevice device;
+  final SerialConsoleDeviceBase device;
 
   @override
   CO2SensorModel runNotifierBuild(
@@ -160,7 +160,7 @@ class CO2SensorProvider
 
 mixin CO2SensorRef on AutoDisposeNotifierProviderRef<CO2SensorModel> {
   /// The parameter `device` of this provider.
-  UsbDevice get device;
+  SerialConsoleDeviceBase get device;
 }
 
 class _CO2SensorProviderElement
@@ -169,7 +169,7 @@ class _CO2SensorProviderElement
   _CO2SensorProviderElement(super.provider);
 
   @override
-  UsbDevice get device => (origin as CO2SensorProvider).device;
+  SerialConsoleDeviceBase get device => (origin as CO2SensorProvider).device;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
