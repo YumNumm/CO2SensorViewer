@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:co2_sensor_viewer/core/theme/custom_colors.dart';
 import 'package:co2_sensor_viewer/feature/device_selector/ui/device_selector_page.dart';
 import 'package:co2_sensor_viewer/gen/fonts.gen.dart';

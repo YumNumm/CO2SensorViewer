@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-// ignore_for_file: type=lint
+// ignore_for_file: type=lint, duplicate_ignore
 
 part of 'co2_sensor_state_provider.dart';
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:co2_sensor_viewer/core/providers/serial_console/base/serial_console_base.dart';
 import 'package:co2_sensor_viewer/feature/monitoring/data/model/co2_sensor_state.dart';
@@ -25,7 +26,7 @@ class CO2Sensor extends _$CO2Sensor {
     final stream = await device.createStream();
     final startCompleter = Completer<void>();
     stream.listen((event) {
-      print(event);
+      log(event);
       if (event == 'OK STA') {
         startCompleter.complete();
       }
