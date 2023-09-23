@@ -11,9 +11,11 @@ class AndroidSerialConsoleImpl implements SerialConsoleBase {
     return devices
         .map(
           (device) => SerialPortDevice(
-            name: device.productName,
+            name: device.deviceName,
             manufacturer: device.manufacturerName,
             serialNumber: device.serial,
+            productId: device.pid,
+            vendorId: device.vid,
             device: (device, null),
           ),
         )

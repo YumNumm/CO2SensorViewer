@@ -14,6 +14,8 @@ class OthersSerialConsoleImpl implements SerialConsoleBase {
             name: device.description,
             manufacturer: device.manufacturer,
             serialNumber: device.serialNumber,
+            productId: device.productId,
+            vendorId: device.vendorId,
             device: (null, device),
           ),
         )

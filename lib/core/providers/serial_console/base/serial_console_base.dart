@@ -24,6 +24,8 @@ class SerialPortDevice with _$SerialPortDevice {
     required String? name,
     required String? manufacturer,
     required String? serialNumber,
+    required int? productId,
+    required int? vendorId,
 
     /// Androidの場合は[us.UsbDevice]、それ以外は[lsp.SerialPort]
     required (UsbDevice? android, SerialPort? others) device,

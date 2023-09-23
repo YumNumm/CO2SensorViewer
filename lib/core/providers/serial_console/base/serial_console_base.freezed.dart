@@ -19,6 +19,8 @@ mixin _$SerialPortDevice {
   String? get name => throw _privateConstructorUsedError;
   String? get manufacturer => throw _privateConstructorUsedError;
   String? get serialNumber => throw _privateConstructorUsedError;
+  int? get productId => throw _privateConstructorUsedError;
+  int? get vendorId => throw _privateConstructorUsedError;
 
   /// Androidの場合は[us.UsbDevice]、それ以外は[lsp.SerialPort]
   (UsbDevice?, SerialPort?) get device => throw _privateConstructorUsedError;
@@ -38,6 +40,8 @@ abstract class $SerialPortDeviceCopyWith<$Res> {
       {String? name,
       String? manufacturer,
       String? serialNumber,
+      int? productId,
+      int? vendorId,
       (UsbDevice?, SerialPort?) device});
 }
 
@@ -57,6 +61,8 @@ class _$SerialPortDeviceCopyWithImpl<$Res, $Val extends SerialPortDevice>
     Object? name = freezed,
     Object? manufacturer = freezed,
     Object? serialNumber = freezed,
+    Object? productId = freezed,
+    Object? vendorId = freezed,
     Object? device = null,
   }) {
     return _then(_value.copyWith(
@@ -72,6 +78,14 @@ class _$SerialPortDeviceCopyWithImpl<$Res, $Val extends SerialPortDevice>
           ? _value.serialNumber
           : serialNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      vendorId: freezed == vendorId
+          ? _value.vendorId
+          : vendorId // ignore: cast_nullable_to_non_nullable
+              as int?,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -92,6 +106,8 @@ abstract class _$$_SerialPortDeviceCopyWith<$Res>
       {String? name,
       String? manufacturer,
       String? serialNumber,
+      int? productId,
+      int? vendorId,
       (UsbDevice?, SerialPort?) device});
 }
 
@@ -109,6 +125,8 @@ class __$$_SerialPortDeviceCopyWithImpl<$Res>
     Object? name = freezed,
     Object? manufacturer = freezed,
     Object? serialNumber = freezed,
+    Object? productId = freezed,
+    Object? vendorId = freezed,
     Object? device = null,
   }) {
     return _then(_$_SerialPortDevice(
@@ -124,6 +142,14 @@ class __$$_SerialPortDeviceCopyWithImpl<$Res>
           ? _value.serialNumber
           : serialNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      productId: freezed == productId
+          ? _value.productId
+          : productId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      vendorId: freezed == vendorId
+          ? _value.vendorId
+          : vendorId // ignore: cast_nullable_to_non_nullable
+              as int?,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -139,6 +165,8 @@ class _$_SerialPortDevice implements _SerialPortDevice {
       {required this.name,
       required this.manufacturer,
       required this.serialNumber,
+      required this.productId,
+      required this.vendorId,
       required this.device});
 
   @override
@@ -147,6 +175,10 @@ class _$_SerialPortDevice implements _SerialPortDevice {
   final String? manufacturer;
   @override
   final String? serialNumber;
+  @override
+  final int? productId;
+  @override
+  final int? vendorId;
 
   /// Androidの場合は[us.UsbDevice]、それ以外は[lsp.SerialPort]
   @override
@@ -154,7 +186,7 @@ class _$_SerialPortDevice implements _SerialPortDevice {
 
   @override
   String toString() {
-    return 'SerialPortDevice(name: $name, manufacturer: $manufacturer, serialNumber: $serialNumber, device: $device)';
+    return 'SerialPortDevice(name: $name, manufacturer: $manufacturer, serialNumber: $serialNumber, productId: $productId, vendorId: $vendorId, device: $device)';
   }
 
   @override
@@ -167,12 +199,16 @@ class _$_SerialPortDevice implements _SerialPortDevice {
                 other.manufacturer == manufacturer) &&
             (identical(other.serialNumber, serialNumber) ||
                 other.serialNumber == serialNumber) &&
+            (identical(other.productId, productId) ||
+                other.productId == productId) &&
+            (identical(other.vendorId, vendorId) ||
+                other.vendorId == vendorId) &&
             (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, manufacturer, serialNumber, device);
+  int get hashCode => Object.hash(runtimeType, name, manufacturer, serialNumber,
+      productId, vendorId, device);
 
   @JsonKey(ignore: true)
   @override
@@ -186,6 +222,8 @@ abstract class _SerialPortDevice implements SerialPortDevice {
       {required final String? name,
       required final String? manufacturer,
       required final String? serialNumber,
+      required final int? productId,
+      required final int? vendorId,
       required final (UsbDevice?, SerialPort?) device}) = _$_SerialPortDevice;
 
   @override
@@ -194,6 +232,10 @@ abstract class _SerialPortDevice implements SerialPortDevice {
   String? get manufacturer;
   @override
   String? get serialNumber;
+  @override
+  int? get productId;
+  @override
+  int? get vendorId;
   @override
 
   /// Androidの場合は[us.UsbDevice]、それ以外は[lsp.SerialPort]
