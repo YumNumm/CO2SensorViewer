@@ -11,8 +11,11 @@ part 'co2_sensor_state_provider.g.dart';
 class CO2Sensor extends _$CO2Sensor {
   @override
   CO2SensorModel build(SerialConsoleDeviceBase device) {
+    ref.onDispose(() {
+      device.close();
+    });
     return const CO2SensorModel(
-      limit: 60 * 5,
+      limit: 60 ~/ 2,
       data: [],
     );
   }

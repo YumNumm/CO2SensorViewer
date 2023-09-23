@@ -33,7 +33,7 @@ class OthersSerialConsoleDeviceImpl implements SerialConsoleDeviceBase {
 
   @override
   Future<Stream<String>> createStream() async {
-    port.open(mode: SerialPortMode.readWrite);
+    port.openReadWrite();
     final reader = SerialPortReader(port);
     return reader.stream.asyncMap(String.fromCharCodes);
   }
