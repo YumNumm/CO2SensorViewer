@@ -53,7 +53,6 @@ enum CO2ConcentrationLevel {
           CO2ConcentrationLevel.bad,
         _ when CO2ConcentrationLevel.veryBad.threshould >= value =>
           CO2ConcentrationLevel.veryBad,
-        _ =>
-          CO2ConcentrationLevel.extremelyBad,
+        _ => CO2ConcentrationLevel.extremelyBad,
       };
 }
