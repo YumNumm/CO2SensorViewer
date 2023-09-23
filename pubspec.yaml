@@ -11,11 +11,65 @@ dependencies:
   dynamic_color: ^1.6.7
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.20.1
+  freezed_annotation: ^2.4.1
+  hooks_riverpod: ^2.4.0
+  intl: ^0.18.1
+  json_annotation: ^4.8.1
+  riverpod_annotation: ^2.1.5
   usb_serial: ^0.5.1
 
 dev_dependencies:
+  build_runner: ^2.4.6
+  custom_lint: ^0.5.3
+  flutter_gen_runner: ^5.3.1
   flutter_lints: ^2.0.0
+  freezed: ^2.4.2
+  json_serializable: ^6.7.1
   pedantic_mono: ^1.24.0+1
+  riverpod_generator: ^2.3.2
+  riverpod_lint: ^2.1.0
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
+    - assets/fonts/
+
+  fonts:
+    - family: NotoSansJP
+      fonts:
+        - asset: assets/fonts/NotoSansJP-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/NotoSansJP-Light.ttf
+          weight: 300
+        - asset: assets/fonts/NotoSansJP-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/NotoSansJP-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/NotoSansJP-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/NotoSansJP-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/NotoSansJP-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/NotoSansJP-Black.ttf
+          weight: 900
+    - family: JetBrainsMono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/JetBrainsMono-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/JetBrainsMono-Light.ttf
+          weight: 300
+        - asset: assets/fonts/JetBrainsMono-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/JetBrainsMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/JetBrainsMono-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/JetBrainsMono-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/JetBrainsMono-ExtraBold.ttf
+          weight: 800

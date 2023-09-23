@@ -1,4 +1,6 @@
 import 'package:co2_sensor_viewer/core/theme/custom_colors.dart';
+import 'package:co2_sensor_viewer/feature/monitoring/ui/monitoring_page.dart';
+import 'package:co2_sensor_viewer/gen/fonts.gen.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
 
@@ -42,18 +44,21 @@ class App extends StatelessWidget {
             brightness: Brightness.dark,
           );
         }
-        return MaterialApp.router(
+        return MaterialApp(
           title: 'CO2 Monitor',
           theme: ThemeData(
             colorScheme: lightColorScheme,
             extensions: [lightCustomColors],
             useMaterial3: true,
+            fontFamily: FontFamily.notoSansJP,
           ),
           darkTheme: ThemeData(
             colorScheme: darkColorScheme,
             extensions: [darkCustomColors],
             useMaterial3: true,
+            fontFamily: FontFamily.notoSansJP,
           ),
+          home: const DeviceSelectorPage(),
         );
       },
     );
