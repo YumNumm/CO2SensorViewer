@@ -8,7 +8,7 @@ part of 'co2_sensor_state_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$cO2SensorHash() => r'48b1dca6a838961ecc285403f7c9f60222cdeea8';
+String _$cO2SensorHash() => r'75a1fc38eda809222b665473fe3af88af457d946';
 
 /// Copied from Dart SDK
 class _SystemHash {
