@@ -131,7 +131,10 @@ class _CO2Status extends StatelessWidget {
           child: Card(
             color: co2ConcentrationLevel.color.withOpacity(0.5),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24,
+                vertical: 8,
+              ),
               child: FittedBox(
                 fit: BoxFit.scaleDown,
                 child: Column(
