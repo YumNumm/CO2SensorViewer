@@ -14,6 +14,9 @@ class MonitoringPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final textTheme = theme.textTheme;
+
     final state = ref.watch(CO2SensorProvider(device));
     final data = state.data;
     useEffect(
@@ -27,16 +30,29 @@ class MonitoringPage extends HookConsumerWidget {
     if (data.isEmpty) {
       return Scaffold(
         appBar: AppBar(
-          title: const Text('Connecting...'),
+          title: Text(
+            'Connecting...',
+            style: textTheme.headlineSmall!.copyWith(
+              fontFamily: FontFamily.jetBrainsMono,
+              fontFamilyFallback: [FontFamily.notoSansJP],
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-        body: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(),
-            Text('接続中...'),
-            SizedBox(height: 8),
-            CircularProgressIndicator.adaptive(),
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '接続中...',
+                style: textTheme.headlineMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              const CircularProgressIndicator.adaptive(),
+            ],
+          ),
         ),
       );
     }
@@ -50,31 +66,43 @@ class MonitoringPage extends HookConsumerWidget {
       ),
     ];
     return Scaffold(
-      backgroundColor:
-          CO2ConcentrationLevel.from(data.last.$2.co2).color.withOpacity(0.2),
       appBar: AppBar(
-        title: Text('Connected: ${device.portDevice.name}'),
+        title: Text(
+          'Connected: ${device.portDevice.name}',
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                fontFamily: FontFamily.jetBrainsMono,
+                fontFamilyFallback: [FontFamily.notoSansJP],
+                fontWeight: FontWeight.bold,
+              ),
+        ),
       ),
       body: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final shouldPortrait =
-                constraints.maxWidth < constraints.maxHeight * 1.5;
-            final child = shouldPortrait
-                ? Column(
-                    key: const Key('portrait'),
-                    children: children,
-                  )
-                : Row(
-                    key: const Key('landscape'),
-                    children: children,
-                  );
-            return AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
-              child: child,
-            );
-          },
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: CO2ConcentrationLevel.from(data.last.$2.co2)
+                .color
+                .withOpacity(0.2),
+          ),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final shouldPortrait =
+                  constraints.maxWidth < constraints.maxHeight * 1.5;
+              final child = shouldPortrait
+                  ? Column(
+                      key: const Key('portrait'),
+                      children: children,
+                    )
+                  : Row(
+                      key: const Key('landscape'),
+                      children: children,
+                    );
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: SafeArea(child: child),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -116,6 +144,7 @@ class _CO2Status extends StatelessWidget {
                             text: 'CO',
                             style: textTheme.titleLarge!.copyWith(
                               fontSize: 40,
+                              fontFamily: FontFamily.jetBrainsMono,
                               fontFamilyFallback: [FontFamily.notoSansJP],
                             ),
                           ),
@@ -130,6 +159,7 @@ class _CO2Status extends StatelessWidget {
                             text: '濃度',
                             style: textTheme.titleLarge!.copyWith(
                               fontSize: 40,
+                              fontFamily: FontFamily.jetBrainsMono,
                               fontFamilyFallback: [FontFamily.notoSansJP],
                             ),
                           ),
@@ -150,7 +180,7 @@ class _CO2Status extends StatelessWidget {
                           TextSpan(
                             text: 'ppm',
                             style: textTheme.titleLarge!.copyWith(
-                              fontSize: 40,
+                              fontSize: 30,
                               fontFamily: FontFamily.jetBrainsMono,
                               fontFamilyFallback: [FontFamily.notoSansJP],
                             ),

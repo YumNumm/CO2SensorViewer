@@ -12,7 +12,14 @@ class DeviceSelectorPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CO2 Monitor'),
+        title: Text(
+          'CO2 Monitor',
+          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                fontFamily: FontFamily.jetBrainsMono,
+                fontFamilyFallback: [FontFamily.notoSansJP],
+                fontWeight: FontWeight.bold,
+              ),
+        ),
         // refresh button with text, icon
         actions: [
           TextButton.icon(
